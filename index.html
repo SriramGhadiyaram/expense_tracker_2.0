@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Expense Tracker</h1>
+    <div>
+        <input type="text" placeholder="Description" data-bind="value: newDescription, valueUpdate: 'afterkeydown'">
+        <input type="number" placeholder="Amount" data-bind="value: newAmount, valueUpdate: 'afterkeydown'">
+        <select data-bind="value: newCategory">
+            <option value="Food">Food</option>
+            <option value="Travel">Travel</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Other">Other</option>
+        </select>
+        <input type="date" data-bind="value: newDate">
+        <select data-bind="value: newPaymentMethod">
+            <option value="Cash">Cash</option>
+            <option value="Credit">Credit</option>
+            <option value="Debit">Debit</option>
+        </select>
+        <button data-bind="click: addExpense">Add Expense</button>
+    </div>
+
+    <div>
+        <h3>Filter Expenses</h3>
+        <input type="text" placeholder="Category" data-bind="value: filterExpenses().category, valueUpdate: 'afterkeydown'">
+        <input type="text" placeholder="Date" data-bind="value: filterExpenses().date, valueUpdate: 'afterkeydown'">
+        <select data-bind="value: filterExpenses().paymentMethod">
+            <option value="">All Payment Methods</option>
+            <option value="Cash">Cash</option>
+            <option value="Credit">Credit</option>
+            <option value="Debit">Debit</option>
+        </select>
+    </div>
+
+    <h2>Expenses</h2>
+    <ul data-bind="foreach: filteredExpenses">
+        <li class="expense">
+            <span>
+                <strong data-bind="text: description"></strong> -
+                <span data-bind="text: category"></span> -
+                <span data-bind="text: amount"></span> -
+                <span data-bind="text: date"></span> -
+                <span data-bind="text: paymentMethod"></span>
+            </span>
+        </li>
+    </ul>
+
+    <div class="total">
+        Total: $<span data-bind="text: totalExpenses"></span>
+    </div>
+
+    <script src="Scripts/knockout-3.5.1.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
